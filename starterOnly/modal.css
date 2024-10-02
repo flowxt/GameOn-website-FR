@@ -305,6 +305,7 @@ input[data-error]::after {
   opacity: 1;
   cursor: pointer;
   transform: scale(0.7);
+  transition: 0.3s;
 }
 .close:before,
 .close:after {
@@ -527,3 +528,27 @@ footer {
   }
 }
 
+.error-message {
+  color: red;
+  font-size: 0.7em;
+  margin-top: 3px;
+}
+
+/* AJOUT DU STYLE POUR PAGE D'INSCRIPTION VALIDE */
+
+
+/*****************************************************ANIMATION POUR REACTIVER LANIMATION DE LA MODALE FERMETURE */
+/* .modal-closing {
+  animation-name: modalclose;
+  animation-duration: var(--modal-duration);
+}
+@keyframes modalclose {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-150px);
+  }
+} */
