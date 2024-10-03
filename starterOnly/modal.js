@@ -34,6 +34,9 @@ function closeModal() {
   modalbg.style.display = "none";
 }
 
+//******* CREATION CONST FORM ********************************/
+const form = document.querySelector("form");
+
 //***************************CREATION D UNE FONCTION VALIDATE **************** */
 const inputs = document.querySelectorAll(
   "input[type = text], input[type = email], input[type = date], input[type = date], input[type=number], input[type = radio], input[type = checkbox]"
@@ -116,30 +119,45 @@ const quantityChecker = (value) => {
   if (value < 0 || value > 99) {
     errorDisplay("quantity", "Veuillez entrer un nombre entre 0 et 99");
     quantity = null;
+  } else if (!value) {
+    errorDisplay("quantity", "Vous devez mettre au moins 1 chiffre");
+    quantity = null;
   } else {
     errorDisplay("quantity", "", true);
     quantity = value;
   }
 };
-const checkboxChecker = (checked) => {
-  if (!checked) {
+const checkboxChecker = () => {
+  const checkbox = document.getElementById("checkbox1");
+
+  if (!checkbox.checked) {
     errorDisplay(
-      "checkbox1",
+      "checkbox",
       "Vous devez vérifier que vous acceptez les termes et conditions"
     );
     confirmPass = null;
   } else {
-    errorDisplay("checkbox1", "", true);
-    confirmPass = checked;
+    errorDisplay("checkbox", "", true);
+    confirmPass = true;
   }
 };
-const radioChecker = (checked) => {
-  if (!checked) {
-    errorDisplay("locations", "Vous devez choisir une ville");
+const radioChecker = () => {
+  const radioButtons = document.querySelectorAll('input[name="location"]');
+  let selectedCity = null;
+
+  for (const radioButton of radioButtons) {
+    if (radioButton.checked) {
+      selectedCity = radioButton.value;
+      break;
+    }
+  }
+
+  if (!selectedCity) {
+    errorDisplay("location", "Vous devez choisir une ville");
     locations = null;
   } else {
-    errorDisplay("locations", "", true);
-    locations = checked;
+    errorDisplay("location", "", true);
+    locations = selectedCity;
   }
 };
 
@@ -169,37 +187,62 @@ inputs.forEach((input) => {
         break;
 
       // A Verifier car on est sur de la checkbox //
-      case "locations":
-        radioChecker(e.target.checked);
+      case "location1":
+      case "location2":
+      case "location3":
+      case "location4":
+      case "location5":
+      case "location6":
+        radioChecker();
         break;
-
-      case "confirmPass":
-        checkboxChecker(e.target.checked);
+      case "checkbox1":
+        checkboxChecker();
         break;
-
       default:
         null;
     }
   });
 });
 
-// function validate() {
-//   let first = document.getElementById("first");
-//   let last = document.getElementById("last");
-//   let email = document.getElementById("email");
-//   let quantity = document.getElementById("quantity");
-//   let birthdate = document.getElementById("birthdate");
-//   let locations = document.getElementsByName("location");
-//   let terms = document.getElementById("checkbox1");
-// }
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
 
-//****************** Récupérer les champs du formulaire */
-// let form = document.querySelector("form");
-// form.addEventListener("submit", function (event) {
-//   event.preventDefault();
-//   let prenom = document.getElementById("first");
-//   console.log(prenom);
-// });
+  // Vérifiez tous les champs une dernière fois
+  firstChecker(document.getElementById("first").value);
+  lastChecker(document.getElementById("last").value);
+  emailChecker(document.getElementById("email").value);
+  birthdateChecker(document.getElementById("birthdate").value);
+  quantityChecker(document.getElementById("quantity").value);
+  radioChecker();
+  checkboxChecker();
+
+  if (
+    first &&
+    last &&
+    email &&
+    quantity &&
+    birthdate &&
+    locations &&
+    confirmPass
+  ) {
+    console.log("Formulaire valide !");
+    const data = {
+      first,
+      last,
+      email,
+      birthdate,
+      quantity,
+      locations,
+      confirmPass,
+    };
+    console.log(data);
+    // Ici, vous pouvez ajouter le code pour soumettre le formulaire
+    // Par exemple : form.submit();
+  } else {
+    console.log("Formulaire invalide. Veuillez corriger les erreurs.");
+    alert("Veuillez remplir correctement tous les champs du formulaire.");
+  }
+});
 
 //***********************************ANIMATION POUR LA FERMETURE MODALE****************************/
 // function closeModal() {
