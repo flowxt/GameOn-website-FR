@@ -106,7 +106,7 @@ const birthdateChecker = (value) => {
   if (isNaN(age) || age < 8 || age > 99) {
     errorDisplay(
       "birthdate",
-      "Vous devez avoir entre 8 et 99 ans pour vous inscrire"
+      "Vous devez rentrer une date et avoir entre 8 et 99 ans"
     );
     birthdate = null;
   } else {
@@ -236,12 +236,30 @@ form.addEventListener("submit", (e) => {
       confirmPass,
     };
     console.log(data);
-    // Ici, vous pouvez ajouter le code pour soumettre le formulaire
+
+    // Cacher le formulaire
+    form.style.display = "none";
+
+    // Afficher le message de confirmation
+    document.querySelector(".confirmation-message").style.display = "block";
+
+    // Ici, vous pouvez ajouter le code pour soumettre le formulaire si nécessaire
     // Par exemple : form.submit();
   } else {
     console.log("Formulaire invalide. Veuillez corriger les erreurs.");
     alert("Veuillez remplir correctement tous les champs du formulaire.");
   }
+});
+
+// Ajouter un écouteur d'événements pour le bouton "Fermer"
+document.getElementById("btnClose").addEventListener("click", function () {
+  // Fermer la modal
+  modalbg.style.display = "none";
+
+  // Réinitialiser le formulaire pour la prochaine utilisation
+  form.reset();
+  form.style.display = "block";
+  document.querySelector(".confirmation-message").style.display = "none";
 });
 
 //***********************************ANIMATION POUR LA FERMETURE MODALE****************************/

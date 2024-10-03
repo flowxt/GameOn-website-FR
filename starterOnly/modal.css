@@ -138,6 +138,32 @@ main {
 }
 
 /* Modal form */
+.confirmation-message {
+  text-align: center;
+  padding: 2em;
+  display: none;
+}
+
+.confirmation-message p {
+  font-size: 2rem;
+  color: #fff;
+  margin-bottom: 1em;
+}
+
+#btnClose {
+  background: #fe142f;
+  padding: 1em 2em;
+  color: #fff;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+#btnClose:hover {
+  background: #3876ac;
+}
+
 
 .button {
   background: #fe142f;
@@ -183,17 +209,7 @@ main {
   padding-top: 10px;
 }
 
-.confirmation-message {
-  display: none; /* Cache le message par défaut */
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.8);
-  color: white;
-  font-size: 2em;
-  text-align: center;
-}
+
 
 .modal-body {
   padding: 15px 8%;
