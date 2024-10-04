@@ -62,7 +62,7 @@ const errorDisplay = (tag, message, valid) => {
 const firstChecker = (value) => {
   if (value.length < 2) {
     errorDisplay("first", "Le prénom doit contenir au moins 2 caractères");
-    pseudo = null;
+    first = null;
   } else {
     errorDisplay("first", "", true);
     first = value;
@@ -166,18 +166,6 @@ const radioChecker = () => {
 inputs.forEach((input) => {
   input.addEventListener("input", (e) => {
     switch (e.target.id) {
-      case "first":
-        firstChecker(e.target.value);
-        break;
-
-      case "last":
-        lastChecker(e.target.value);
-        break;
-
-      case "email":
-        emailChecker(e.target.value);
-        break;
-
       case "quantity":
         quantityChecker(e.target.value);
         break;
@@ -187,14 +175,7 @@ inputs.forEach((input) => {
         break;
 
       // A Verifier car on est sur de la checkbox //
-      case "location1":
-      case "location2":
-      case "location3":
-      case "location4":
-      case "location5":
-      case "location6":
-        radioChecker();
-        break;
+
       case "checkbox1":
         checkboxChecker();
         break;
@@ -243,11 +224,10 @@ form.addEventListener("submit", (e) => {
     // Afficher le message de confirmation
     document.querySelector(".confirmation-message").style.display = "block";
 
-    // Ici, vous pouvez ajouter le code pour soumettre le formulaire si nécessaire
+    // Ici, je peux ajouter le code pour soumettre le formulaire si nécessaire
     // Par exemple : form.submit();
   } else {
     console.log("Formulaire invalide. Veuillez corriger les erreurs.");
-    alert("Veuillez remplir correctement tous les champs du formulaire.");
   }
 });
 

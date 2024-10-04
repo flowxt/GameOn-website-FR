@@ -148,6 +148,7 @@ main {
   font-size: 2rem;
   color: #fff;
   margin-bottom: 1em;
+  margin-top: 200px;
 }
 
 #btnClose {
@@ -158,6 +159,7 @@ main {
   border-radius: 15px;
   cursor: pointer;
   font-size: 16px;
+  margin-top: 300px;
 }
 
 #btnClose:hover {
@@ -207,6 +209,7 @@ main {
   position: relative;
   color: #fff;
   padding-top: 10px;
+  min-height: 80vh;
 }
 
 
