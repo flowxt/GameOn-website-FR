@@ -1,0 +1,19 @@
+# Ignorer les fichiers système MacOS
+.DS_Store
+.Trash/
+
+# Ignorer les dossiers personnels
+.config/
+.npm/
+.vscode/
+.git-credentials
+.gitconfig
+.zsh_history
+.zsh_sessions/
+Documents/
+Downloads/
+Library/
+Movies/
+Music/
+Pictures/
+Public/
